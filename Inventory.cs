@@ -12,7 +12,7 @@ public class Inventory
         DateTime expirationDate; // declaration
         int quantity; // declaration
         
-        // Validate Quantity
+        // Validate quantity input before continuing
         while (!FoodItem.ValidateQuantity(quantityInput, out quantity))
         {
             Console.WriteLine();
@@ -20,7 +20,7 @@ public class Inventory
             quantityInput = Console.ReadLine();
         }
         
-        // Validate expirationDate (must be in the future)
+        // Validate expiration date (must be a valid future date)
         while (true)
         {
             if (!FoodItem.ValidateExperiationDate(expirationInput, out expirationDate))
@@ -41,7 +41,7 @@ public class Inventory
             expirationInput = Console.ReadLine();
         }
         
-        // Check to see if the inventory already holds that exact same FoodItem
+        // Check if this exact item already exists (same name/category/expiration)
         FoodItem? existingItem = _items.Find(item => (
             item.Name.ToUpper() == name.ToUpper()
             &&
@@ -95,6 +95,7 @@ public class Inventory
             return;
         }
         
+        // Show each matching item so the user can pick the correct one
         Console.WriteLine();
         Console.WriteLine($"Found {matches.Count} item(s) named \"{normalized}\":");
         for (int i = 0; i < matches.Count; i++)
@@ -134,6 +135,7 @@ public class Inventory
             return;
         }
         
+        // Display each stored item with key details
         Console.WriteLine();
         Console.WriteLine("Current food items in inventory:");
         for (int i = 0; i < _items.Count; i++)

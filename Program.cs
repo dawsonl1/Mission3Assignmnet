@@ -14,6 +14,7 @@ bool loop = true;
 
 Inventory inventory = new Inventory();
 
+// Pause to let the user read the most recent action before re-printing the menu
 void PauseBeforeMenu()
 {
     Console.WriteLine("Press any key to return to the menu...");
